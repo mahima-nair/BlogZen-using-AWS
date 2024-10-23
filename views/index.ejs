@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/utils.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/mobile.css">
+    <title>BlogZen</title>
+</head>
+
+<body>
+    <nav class="navigation max-width-1 m-auto">
+        <div class="nav-left">
+            <a href="/">
+                <span><img src="./images/logo.png" width="94px" alt="">BlogZen</span>
+            </a>
+            <ul>
+                <li><a href="./">Home</a></li>
+                <form action="/search" method="POST">
+                    <input class="form-input" type="text" name="searchInput" placeholder="Article Search" id = "searchInput">
+                    <button class="btn" id = "search">Search</button>
+                </form>
+                
+            </ul>
+            
+        </div>
+        <div class="nav-right">
+            <form action="/addNew" method="get">                
+                <button class="btn" id = "add">Add New Post</button>
+            </form>
+         
+           
+
+        </div>
+
+    </nav>
+    <div class="max-width-1 m-auto">
+        <hr>
+    </div>
+    <div class="m-auto content max-width-1 my-2">
+        <div class="content-left">
+            <h1>BLOGZEN<br><br>The heaven for bloggers</h1>
+            <p>Where Words Meet the World – Start Your Blogging Journey Today with BlogZen</p>
+        </div>
+        <div class="content-right">
+            <img src="./images/home.svg" alt="iBlog">
+        </div>
+    </div>
+
+    <div class="max-width-1 m-auto">
+        <hr>
+    </div>
+    <div class="home-articles max-width-1 m-auto font2">
+        <h2>Featured Articles</h2>
+        <% data.forEach(element =>{ %>
+        <div class="home-article">
+            <div class="home-article-img">
+                <img src="./images/3.png" alt="article">
+            </div>
+            <div class="home-article-content font1">
+                <a href="/blogpost/<%=element.title %>">
+                    <h3><%= element.title %></h3>
+                </a>
+
+                <div>Author : <%= element.author %></div>
+                <span><%= element.dateCreated %></span>
+                <div class="icon-del">
+                    <form action="/delete/<%= encodeURIComponent(element.title) %>" method="POST" style="display:inline; border:none">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this post?');">
+                            <img src="./images/delete.png" alt="Delete">
+                        </button>
+                    </form>
+                    <div></div>
+                    
+                    <a href =/edit/<%=encodeURIComponent(element.title) %>>
+                    <img src = "./images/edit.png"  ></a>
+                   </div>
+                
+            </div>
+          
+        </div>
+        <% }) %>
+    
+                   
+                </a>
+
+                
+            </div>
+        </div> 
+         
+       
+    </div>
+    
+
+    <div class="footer">
+        <% const d = new Date() %>
+        <p>Copyright &copy;<%= d.getFullYear(); %> BlogZen.com </p> 
+    </div>
+</body>
+
+</html>
