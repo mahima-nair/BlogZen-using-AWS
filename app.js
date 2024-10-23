@@ -3,7 +3,7 @@ require('dotenv').config();
 const aws = require('aws-sdk');
 const express = require('express');
 const app = express();
-const port = 5000 || process.env.PORT;
+const port = process.env.PORT || 5000;
 app.set('view engine', 'ejs'); // Set EJS as the templating engine
 // app.set('views', './views'); // Set the views directory (optional if in default location)
 
